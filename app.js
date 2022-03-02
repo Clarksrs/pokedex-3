@@ -11,6 +11,10 @@ const pokeHeight = document.querySelector('.poke-height');
 const pokeListItems = document.querySelectorAll('.list-item');
 const leftButton = document.querySelector('.left-button');
 const rightButton = document.querySelector('.right-button');
+const topButton = document.querySelector('.top-button');
+const bottomButton = document.querySelector('.bottom-button');
+const pageText = document.querySelector('#page-number');
+let pageNumber=1;
 
 
 // constants and variables
@@ -91,12 +95,16 @@ const fetchPokeData = id => {
 const handleLeftButtonClick = () => {
   if (prevUrl) {
     fetchPokeList(prevUrl);
+    pageNumber--;
+    pageText.innerText=pageNumber;
   }
 };
 
 const handleRightButtonClick = () => {
   if (nextUrl) {
     fetchPokeList(nextUrl);
+    pageNumber++;
+    pageText.innerText=pageNumber;
   }
 };
 
@@ -114,10 +122,12 @@ const handleListItemClick = (e) => {
 // adding event listeners
 leftButton.addEventListener('click', handleLeftButtonClick);
 rightButton.addEventListener('click', handleRightButtonClick);
+bottomButton.addEventListener('click', handleLeftButtonClick);
+topButton.addEventListener('click', handleRightButtonClick);
 for (const pokeListItem of pokeListItems) {
   pokeListItem.addEventListener('click', handleListItemClick);
 }
 
 
 // initialize App
-fetchPokeList('https://pokeapi.co/api/v2/pokemon?offset=0&limit=20');
+fetchPokeList('https://pokeapi.co/api/v2/pokemon?offset=0&limit=10');

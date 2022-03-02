@@ -10,18 +10,26 @@ body {
   justify-content: center;
 }
 
+h1{
+  font-size:1.9rem;
+  margin-left:-16px;
+}
+
 .pokedex {
   align-items: flex-end;
   display: flex;
   height: 500px;
-  margin: 50px;
   width: 800px;
 }
 
-.left-container,
+.left-container{
+  border: 3px solid black;
+  width: 65%;
+}
+
 .right-container {
   border: 3px solid black;
-  width: 50%;
+  width: 35%;
 }
 
 .right-container {
@@ -31,7 +39,7 @@ body {
 .left-container {
   background: #E71D23;
   height: 100%;
-  width: calc(50% + 50px);
+  width: calc(65% + 50px);
 }
 
 .left-container__top-section {
@@ -52,7 +60,7 @@ body {
 
 .top-section__small-buttons {
   display: flex;
-  margin: 0 25px;
+  margin: 0 16px;
 }
 
 .top-section__red,
@@ -80,15 +88,15 @@ body {
   background: #DEDEDE;
   border: 3px solid black;
   box-shadow: inset 0 0 3px 3px rgba(0,0,0,.3);
-  height: 325px;
+  height: 390px;
 }
 
 .main-section__black {
   background: black;
-  height: calc(100% - 50px);
-  margin: 25px;
-  padding: 10px;
-  width: calc(100% - 50px);
+  height: calc(100% - 16px);
+  margin: 8px;
+  padding: 8px;
+  width: calc(100% - 16px);
 }
 
 .main-screen {
@@ -105,8 +113,10 @@ body {
 
 .poke-name {
   color: white;
-  font-size: 25px;
+  font-size: 1.4rem;
   font-weight: bold;
+  border-bottom:2px solid white;
+  width: fit-content;
 }
 
 .poke-id {
@@ -121,8 +131,8 @@ body {
 
 .poke-front-image,
 .poke-back-image {
-  height: 96px;
-  width: 96px;
+  height: 144px;
+  width: 144px;
 }
 
 .screen__description {
@@ -143,8 +153,12 @@ body {
 }
 
 .stats__types {
+  display:flex;
+  width:100%;
   height: 100%;
   padding: 5px;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .poke-type-one,
@@ -155,6 +169,13 @@ body {
   margin-bottom: 10px;
   padding: 10px;
   text-align: center;
+}
+
+.page-number{
+  text-align:center;
+  color:white;
+  font-weight: bold;
+  letter-spacing: 1px;
 }
 
 .left-container__controllers {
@@ -172,25 +193,38 @@ body {
 
 .d-pad__cell {
   background: black;
-  box-shadow: 0 0 2px 2px rgba(0,0,0, .3);
+  box-shadow: 0 0 2px 2px rgba(0,0,0, .8);
   height: 25px;
   width: 25px;
 }
 
+.d-pad__cell:hover {
+  background: #444;
+}
+
+.d-pad__cell:active {
+  background: #777;
+}
+
+.d-pad__cell.middle:active,
+.d-pad__cell.middle:hover {
+  background:black;
+}
+
 .d-pad__cell.top {
-  border-left: 1px solid dimgrey;
+  border-left: 2px solid dimgrey;
   border-radius: 5px 5px 0 0;
-  border-right: 1px solid dimgrey;
-  border-top: 1px solid dimgrey;
+  border-right: 2px solid dimgrey;
+  border-top: 2px solid dimgrey;
   grid-column: 2 / span 1;
   grid-row: 1 / span 1;
 }
 
 .d-pad__cell.left {
-  border-bottom: 1px solid dimgrey;
-  border-left: 1px solid dimgrey;
+  border-bottom: 2px solid dimgrey;
+  border-left: 2px solid dimgrey;
   border-radius: 5px 0 0 5px;
-  border-top: 1px solid dimgrey;
+  border-top: 2px solid dimgrey;
   grid-column: 1 / span 1;
   grid-row: 2 / span 1;
 }
@@ -201,26 +235,27 @@ body {
 }
 
 .d-pad__cell.right {
-  border-bottom: 1px solid dimgrey;
+  border-bottom: 2px solid dimgrey;
   border-radius: 0 5px 5px 0;
-  border-right: 1px solid dimgrey;
-  border-top: 1px solid dimgrey;
+  border-right: 2px solid dimgrey;
+  border-top: 2px solid dimgrey;
   grid-column: 3 / span 1;
   grid-row: 2 / span 1;
 }
 
 .d-pad__cell.bottom {
-  border-bottom: 1px solid dimgrey;
-  border-left: 1px solid dimgrey;
+  border-bottom: 2px solid dimgrey;
+  border-left: 2px solid dimgrey;
   border-radius: 0 0 5px 5px;
-  border-right: 1px solid dimgrey;
+  border-right: 2px solid dimgrey;
   grid-column: 2 / span 1;
   grid-row: 3 / span 1;
 }
 
 .controllers__buttons {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  align-content: center;
   width: 100px;
 }
 
@@ -228,23 +263,23 @@ body {
   align-items: center;
   background: black;
   border-radius: 50%;
-  border: 1px solid dimgrey;
+  border: 3px solid dimgrey;
   box-shadow: 0 0 2px 2px rgba(0,0,0, .3);
-  color: rgba(255,255,255,.75);
+  color: white;
+  font-size: 1.8rem;
   display: flex;
-  height: 35px;
+  height: 75px;
+  width: 75px;
   justify-content: center;
-  width: 35px;
 }
 
-.buttons__button:first-child {
-  margin-top: 5px;
+.buttons__button:hover {
+  background:#444;
 }
 
-.buttons__button:last-child {
-  margin-top: -5px;
+.buttons__button:active {
+  background:#777;
 }
-
 
 .left-container__right {
   border-left: 3px solid black;
@@ -252,7 +287,7 @@ body {
   flex-direction: column;
   height: 100%;
   justify-content: space-between;
-  width: 50px;
+  width: 64px;
 }
 
 .left-container__hinge {
@@ -283,16 +318,18 @@ body {
 
 .right-container {
   background: #E71D23;
-  height: calc(100% - 50px);
+  height: 100%;
   padding: 25px;
-  width: calc(50% - 50px);
+  width: calc(35% - 50px);
 }
 
 .right-container__black {
   background: black;
   box-shadow: 0 0 2px 2px rgba(0,0,0,.3);
-  height: 300px;
-  padding: 10px;
+  height: 360px;
+  padding: 8px;
+  border: 2px solid white;
+  border-radius:8px;
 }
 
 .right-container__screen {
@@ -300,7 +337,7 @@ body {
   border-radius: 15px;
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   height: 100%;
   padding: 15px 15px 0;
 }
@@ -310,11 +347,12 @@ body {
   color: white;
   cursor: pointer;
   display: flex;
-  font-size: 12px;
-  height: 25px;
+  font-size: .8rem;
   overflow-x: hidden;
-  padding-left: 5px;
-  width: 50%;
+  padding: 6px 4px;
+  width: 98%;
+  letter-spacing: 1px;
+  line-height: 1.4;
 }
 
 .list-item:hover {
@@ -330,35 +368,8 @@ body {
 .right-container__buttons {
   display: flex;
   justify-content: space-around;
-  margin-top: 25px;
+  margin-top: 16px;
 }
-
-.left-button,
-.right-button {
-  align-items: center;
-  background: #DEDEDE;
-  border-radius: 3px;
-  border: 2px solid black;
-  box-shadow: 0 0 2px 2px rgba(0,0,0,.3);
-  cursor: pointer;
-  display: flex;
-  font-weight: bold;
-  height: 30px;
-  justify-content: center;
-  text-transform: uppercase;
-  width: 100px;
-}
-
-.left-button:hover,
-.right-button:hover {
-  background: white;
-}
-
-.left-button:active,
-.right-button:active {
-  box-shadow: inset 0 0 2px 2px rgba(0,0,0,.3);
-}
-
 
 .hide {
   display: none;
