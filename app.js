@@ -8,6 +8,12 @@ const pokeTypeOne = document.querySelector('.poke-type-one');
 const pokeTypeTwo = document.querySelector('.poke-type-two');
 const pokeWeight = document.querySelector('.poke-weight');
 const pokeHeight = document.querySelector('.poke-height');
+const pokeHP = document.querySelector('.poke-HP');
+const pokeAtt = document.querySelector('.poke-att');
+const pokeDef = document.querySelector('.poke-def');
+const pokeSpcAtt = document.querySelector('.poke-spcAtt');
+const pokeSpcDef = document.querySelector('.poke-spcDef');
+const pokeSpeed = document.querySelector('.poke-speed');
 const pokeListItems = document.querySelectorAll('.list-item');
 const leftButton = document.querySelector('.left-button');
 const rightButton = document.querySelector('.right-button');
@@ -68,8 +74,10 @@ const fetchPokeData = id => {
   fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
     .then(res => res.json())
     .then(data => {
+      console.table(data.stats);
       resetScreen();
 
+      /*Get Types and Fromat*/
       const dataTypes = data['types'];
       const dataFirstType = dataTypes[0];
       const dataSecondType = dataTypes[1];
@@ -83,28 +91,56 @@ const fetchPokeData = id => {
       }
       mainScreen.classList.add(dataFirstType['type']['name']);
 
+
       pokeName.textContent = capitalize(data['name']);
       pokeId.textContent = '#' + data['id'].toString().padStart(3, '0');
-      pokeWeight.textContent = data['weight'];
+      pokeWeight.textContent = data['weight']; 
       pokeHeight.textContent = data['height'];
+      pokeHP.textContent = data.stats[0].base_stat; 
+      pokeAtt.textContent = data.stats[1].base_stat;
+      pokeDef.textContent = data.stats[2].base_stat; 
+      pokeSpcAtt.textContent = data.stats[3].base_stat;
+      pokeSpcDef.textContent = data.stats[4].base_stat; 
+      pokeSpeed.textContent = data.stats[5].base_stat;
       pokeFrontImage.src = data['sprites']['front_default'] || '';
       pokeBackImage.src = data['sprites']['back_default'] || '';
     });
 };
 
+const disableButtons = () =>{
+  leftButton.removeEventListener('click', handleLeftButtonClick);
+  rightButton.removeEventListener('click', handleRightButtonClick);
+  bottomButton.removeEventListener('click', handleLeftButtonClick);
+  topButton.removeEventListener('click', handleRightButtonClick);
+}
+
+const enableButtons = () =>{
+  leftButton.addEventListener('click', handleLeftButtonClick);
+  rightButton.addEventListener('click', handleRightButtonClick);
+  bottomButton.addEventListener('click', handleLeftButtonClick);
+  topButton.addEventListener('click', handleRightButtonClick);
+}
+
 const handleLeftButtonClick = () => {
-  if (prevUrl) {
+  disableButtons();
+  if (prevUrl) {    
     fetchPokeList(prevUrl);
     pageNumber--;
     pageText.innerText=pageNumber;
-  }
+  }  
+    setTimeout(enableButtons, 100);
 };
 
 const handleRightButtonClick = () => {
-  if (nextUrl) {
-    fetchPokeList(nextUrl);
+  disableButtons();
+  if (nextUrl) {    
+    if (pageNumber===15){}
+    else {
+      fetchPokeList(nextUrl);
     pageNumber++;
     pageText.innerText=pageNumber;
+    }    
+    setTimeout(enableButtons, 100);
   }
 };
 
@@ -124,6 +160,7 @@ leftButton.addEventListener('click', handleLeftButtonClick);
 rightButton.addEventListener('click', handleRightButtonClick);
 bottomButton.addEventListener('click', handleLeftButtonClick);
 topButton.addEventListener('click', handleRightButtonClick);
+
 for (const pokeListItem of pokeListItems) {
   pokeListItem.addEventListener('click', handleListItemClick);
 }
